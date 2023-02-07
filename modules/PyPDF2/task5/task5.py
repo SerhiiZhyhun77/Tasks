@@ -19,10 +19,10 @@ from pathlib import Path
 pdf_path = Path('Pride_and_Prejudice.pdf')
 # create pdf instance
 pdf = PdfReader(pdf_path)
-# create writer
-writer = PdfWriter()
 
 # 1
+# create writer
+writer = PdfWriter()
 # get last page
 page = pdf.pages[-1]
 writer.add_page(page)
