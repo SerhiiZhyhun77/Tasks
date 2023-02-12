@@ -18,12 +18,12 @@ pdf_path = Path('ugly.pdf')
 pdf_reader = PdfReader(pdf_path)
 pdf_writer = PdfWriter()
 # rotate even pages and add to new pdf
-print('Rotates even pages')
+print('Rotate even pages')
 for i, page in enumerate(pdf_reader.pages):
     if i % 2 == 0:
         page.rotate(90)
     pdf_writer.add_page(page)
-# write resule to file "ugly_rotated.pdf"
+# write result to file "ugly_rotated.pdf"
 print('Write to file "ugly_rotated.pdf"')
 with Path('ugly_rotated.pdf').open(mode='wb') as output_file:
     pdf_writer.write(output_file)
