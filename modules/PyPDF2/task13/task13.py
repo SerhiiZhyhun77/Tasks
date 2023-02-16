@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+
+"""
+[Знакомство с PYTHON. Дэн Бейдер, Дэвис Эймос (2023)]
+
+В текущей директории находится PDF файл newsletter.pdf. Добавьте парольную
+защиту к файлу:
+    user_password - задает пароль пользователя, позволяющий открыть и
+    прочитать файл PDF.
+    owner_password - задает пароль владельца, позволяющий открыть файл PDF
+    без каких-либо ограничений, включая редактирование.
+Сохраните зашифрованные данные PDF в выходной файл newsletter_protected.pdf
+"""
+
+from pathlib import Path
+from PyPDF2 import PdfReader, PdfWriter
+
+# path to pdf
+pdf_path = Path('newsletter.pdf')
+# create pdf instances
+pdf_reader = PdfReader(pdf_path)
+pdf_writer = PdfWriter()
+# append all pages from reader to writer
+pdf_writer.append_pages_from_reader(pdf_reader)
+# passwords for user and owner
+user_password = 'SuperSecret'
+owner_password = 'ReallySuperSecret'
+# encrypt pdf with passwords
+pdf_writer.encrypt(user_password=user_password, owner_password=owner_password)
+# write new pdf to file "newsletter_protected.pdf"
+with Path('newsletter_protected.pdf').open(mode='wb') as output_file:
+    pdf_writer.write(output_file)
