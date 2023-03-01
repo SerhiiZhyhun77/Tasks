@@ -79,4 +79,3 @@ text = 'Wrong username or password'
 html_str = str(browser.page)
 if html_str.find(text):
     print('"Wrong username or password!" was founded!')
-    
