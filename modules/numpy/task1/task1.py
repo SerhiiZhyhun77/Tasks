@@ -26,7 +26,7 @@ print(A)
 print()
 
 # 2
-B= np.array([[5, 4, 3], [7, 6, 5], [9, 8, 7]])
+B = np.array([[5, 4, 3], [7, 6, 5], [9, 8, 7]])
 print('B:')
 print(B)
 print()
