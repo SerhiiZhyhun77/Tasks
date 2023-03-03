@@ -49,5 +49,5 @@ print('-' * 50)
 
 # 6
 print('Task 6:')
-C = C.reshape(3,3,2)
+C = C.reshape(3, 3, 2)
 print(C)
