@@ -35,8 +35,11 @@ def main():
     amount_per_year = amount_per_month * 12
     # output
     print()
-    print(f'Total monthly cost {amount_per_month:,.2f}')
-    print(f'Total yearly cost of spending {amount_per_year:,.2f}')
+    print('Spending per month:')
+    for key, val in amount_dict.items():
+        print(f'{key:>15} {val:<10.2f}')
+    print(f'Total monthly cost: {amount_per_month:,.2f}')
+    print(f'Total yearly cost of spending: {amount_per_year:,.2f}')
 
 if __name__ == '__main__':
     main()
