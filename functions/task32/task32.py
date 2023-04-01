@@ -21,6 +21,7 @@ def main():
             numbers_even.append(num)
         else:
             numbers_odd.append(num)
+    # output
     print('Even numbers:')
     print(numbers_even)
     print(f'Number of even numbers: {len(numbers_even)}')
