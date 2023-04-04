@@ -87,7 +87,7 @@ def main():
         else:
             print('You won!')
             win = True
-    # show choise computer and user
+    # show choice computer and user
     show_choice(comp_subj, user_subj)
 
 if __name__ == '__main__':
