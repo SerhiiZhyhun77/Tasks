@@ -18,7 +18,7 @@
 def is_prime(num):
     for n in range(2, abs(num)):
         if num % n == 0:
-            print(n)
+            print(f'Number is divisible by {n}')
             return False
     return True
 
