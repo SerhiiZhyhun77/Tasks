@@ -10,6 +10,7 @@
 ширину и высоту узора и затем передать эти значения в качестве аргументов в
 функцию drawPattern.
 """
+
 import turtle as t
 
 def drawPattern(width, height):
