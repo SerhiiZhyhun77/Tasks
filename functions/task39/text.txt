@@ -1,0 +1,12 @@
+door
+sport
+spring
+open
+file
+circle
+rectangle
+man
+girl
+children
+world
+notebook
