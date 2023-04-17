@@ -12,7 +12,7 @@
     - среднее арифметическое значение чисел в списке.
 '''
 
-import statistics
+from statistics import mean
 
 def get_nums():
     while True:
@@ -34,7 +34,7 @@ def main():
     print(f'Minimum number in the list: {min(num_lst)}')
     print(f'Maximum number in the list: {max(num_lst)}')
     print(f'Sum of numbers: {sum(num_lst)}')
-    print(f'Average: {statistics.mean(num_lst)}')
+    print(f'Average: {mean(num_lst)}')
 
 if __name__ == '__main__':
     main()
