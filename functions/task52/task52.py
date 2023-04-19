@@ -18,8 +18,6 @@
     периода времени.
 '''
 
-# read data from file to list
-
 def analysis(population_lst):
     # initial values
     population_change = 0
@@ -32,6 +30,8 @@ def analysis(population_lst):
     # determination of the average increase
     for i in range(len(population_lst) - 1):
         difference = population_lst[i + 1] - population_lst[i]
+        population_change += difference
+        counter += 1
         year += 1
         # reviewing max an min
         if difference > max_change:
@@ -40,8 +40,6 @@ def analysis(population_lst):
         if difference < min_change:
             min_change = difference
             min_change_year = year
-        population_change += difference
-        counter += 1
     # average annual increase
     average_population_change = round(population_change / counter)
     # output
