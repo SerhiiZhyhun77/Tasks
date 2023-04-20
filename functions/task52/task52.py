@@ -58,6 +58,8 @@ def get_data():
             population_lst.append(int(population))
     except Exception as err:
         print(err)
+    else:
+        f.close()
     return population_lst
 
 def main():
