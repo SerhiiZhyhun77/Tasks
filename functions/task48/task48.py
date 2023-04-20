@@ -21,9 +21,11 @@ def get_account_num_lst():
         f = open('charge_accounts.txt', 'r')
         for num in f:
             account_num_lst.append(num.strip())
-        return account_num_lst
     except Exception as err:
         print(err)
+    else:
+        f.close()
+    return account_num_lst
 
 def main():
     account_num_lst = get_account_num_lst()
