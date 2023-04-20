@@ -24,6 +24,8 @@ def get_names_lst(file_name):
             name_lst.append(name.strip())
     except Exception as err:
         print(err)
+    else:
+        f.close()
     return name_lst
 
 def main():
