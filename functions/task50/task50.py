@@ -62,6 +62,8 @@ def get_student_solution():
             student_solution_lst.append(sol.strip())
     except Exception as err:
         print(err)
+    else:
+        f.close()
     return student_solution_lst
 
 def main():
