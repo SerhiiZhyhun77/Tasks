@@ -23,6 +23,8 @@ def get_teams():
             teams_lst.append(name.strip().lower())
     except Exception as err:
         print(err)
+    else:
+        f.close()
     return teams_lst
 
 def main():
