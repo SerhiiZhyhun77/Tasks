@@ -49,12 +49,21 @@ def output(square, status):
     print()
 
 def main():
+    # Test 1
     square = [
         [4, 9, 2],
         [3, 5, 7],
         [8, 1, 6]
     ]
     output(square, is_magic_square(square))
+    # Test 2
+    square = [
+        [4, 9, 2],
+        [3, 1, 7],
+        [8, 1, 6]
+    ]
+    output(square, is_magic_square(square))
+
 
 if __name__ == '__main__':
     main()
