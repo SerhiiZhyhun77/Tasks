@@ -1,0 +1,6 @@
+rent:11000
+petrol:800
+food:6200
+cloth:600
+car payments:100
+others:3000
