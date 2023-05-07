@@ -13,6 +13,10 @@ def main():
     file_name = 'text.txt'
     text = read_text(file_name)
     words = get_words(text)
+    output(words)
+
+
+def output(words):
     # Output words in 5 columns
     counter = 0
     for word in words:
