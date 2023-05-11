@@ -21,7 +21,9 @@
 
 
 def main():
+    # Read data from file
     winning_teams = read_file('WorldSeriesWinners.txt')
+    # Get year from user
     year = inp()
     # Output
     winning_team = winning_teams.get(year)
