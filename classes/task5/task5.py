@@ -11,7 +11,7 @@
 '''
 
 
-class Person:
+class Information:
 
     def __init__(self, name, address, age, phone_number):
         self.__name = name
@@ -51,11 +51,11 @@ class Person:
 
 
 def main():
-    person1 = Person('Serhii', 'Ezupil, Bandery, 22, Ukraine', '45',
+    person1 = Information('Serhii', 'Ezupil, Bandery, 22, Ukraine', '45',
                      '+(380)50-999-22-34')
-    person2 = Person('Olha', 'Ezupil, Bandery, 22, Ukraine', '40',
+    person2 = Information('Olha', 'Ezupil, Bandery, 22, Ukraine', '40',
                      '+(380)95-321-02-04')
-    person3 = Person('Mykola', 'Ezupil, Bandery, 22, Ukraine', '17',
+    person3 = Information('Mykola', 'Ezupil, Bandery, 22, Ukraine', '17',
                      '+(380)95-100-45-21')
     # Output
     print(person1)
