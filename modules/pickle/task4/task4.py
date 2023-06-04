@@ -40,6 +40,35 @@ class Employee:
         self.__position = position
 
     def get_employee(self, id):
-        return f'Name: {self.__name} \n' \
+        return f'Name: {self.__name}\n' \
                f'Department: {self.__department}\n' \
                f'Position: {self.__position}\n'
+
+
+def main():
+    n = menu()
+    print(n)
+
+
+def menu():
+    while True:
+        print('-' * 30)
+        print('M E N U'.center(30))
+        print('-' * 30)
+        print('1.Find an employee')
+        print('2.Add new employee')
+        print('3.Change the name, department and position '
+              'of an existing employee')
+        print('4.Remove employee')
+        print('5.Exit')
+        print('-' * 30)
+        n = input('Enter your choice: ')
+        if n.isdigit():
+            n = int(n)
+            if 1 <= n <= 5:
+                return n
+        print('Your choice is wrong!\n')
+
+
+if __name__ == '__main__':
+    main()
