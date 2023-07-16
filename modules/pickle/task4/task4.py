@@ -57,9 +57,9 @@ def actions(n):
     elif n == 2:
         add_employee()
     elif n == 3:
-        change()
+        change_employee()
     elif n == 4:
-        remove()
+        remove_employee()
     elif n == 5:
         exit()
 
@@ -74,7 +74,7 @@ def save():
         print(err)
 
 
-def remove():
+def remove_employee():
     print('Removing employee:')
     id = input('Enter employee ID to remove: ')
     print()
@@ -84,7 +84,7 @@ def remove():
         save()
 
 
-def change():
+def change_employee():
     print('Changing the name, department and position '
           'of an existing employee:')
     id = input('Enter employee ID for change: ')
