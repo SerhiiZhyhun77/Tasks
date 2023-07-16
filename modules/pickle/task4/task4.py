@@ -39,15 +39,91 @@ class Employee:
     def set_position(self, position):
         self.__position = position
 
-    def get_employee(self, id):
+    def get_employee(self):
         return f'Name: {self.__name}\n' \
                f'Department: {self.__department}\n' \
                f'Position: {self.__position}\n'
 
 
 def main():
-    n = menu()
-    print(n)
+    while True:
+        n = menu()
+        actions(n)
+
+
+def actions(n):
+    if n == 1:
+        find_employee()
+    elif n == 2:
+        add_employee()
+    elif n == 3:
+        change()
+    elif n == 4:
+        remove()
+    elif n == 5:
+        exit()
+
+
+def save():
+    try:
+        with open(file_name, 'wb') as f:
+            pickle.dump(employee_dict, f)
+            print()
+            print('Data updated')
+    except Exception as err:
+        print(err)
+
+
+def remove():
+    print('Removing employee:')
+    id = input('Enter employee ID to remove: ')
+    print()
+    if employee_dict.pop(id, None) is None:
+        print('Employee with this ID was not found')
+    else:
+        save()
+
+
+def change():
+    print('Changing the name, department and position '
+          'of an existing employee:')
+    id = input('Enter employee ID for change: ')
+    print()
+    employee = employee_dict.get(id, None)
+    if employee is None:
+        print('Employee with this ID was not found')
+    else:
+        print('Enter new data:')
+        name = input('Name: ')
+        department = input('Department: ')
+        position = input('Position: ')
+        employee.set_name(name)
+        employee.set_department(department)
+        employee.set_position(position)
+        save()
+
+
+def find_employee():
+    print('Find employee by ID:')
+    id = input('Enter employee ID: ')
+    print()
+    employee = employee_dict.get(id, None)
+    if employee is None:
+        print('Employee with this ID was not found')
+    else:
+        print(employee.get_employee())
+    print()
+
+
+def add_employee():
+    print('Adding an employee:')
+    name = input('Name: ')
+    id = input('ID: ')
+    department = input('Department: ')
+    position = input('Position: ')
+    new_employee = Employee(name, id, department, position)
+    employee_dict[id] = new_employee
+    save()
 
 
 def menu():
@@ -63,6 +139,7 @@ def menu():
         print('5.Exit')
         print('-' * 30)
         n = input('Enter your choice: ')
+        print()
         if n.isdigit():
             n = int(n)
             if 1 <= n <= 5:
@@ -71,4 +148,11 @@ def menu():
 
 
 if __name__ == '__main__':
+    file_name = 'employee.dat'
+    try:
+        with open(file_name, 'rb') as f:
+            employee_dict = pickle.load(f)
+            print('Data loaded')
+    except Exception:
+        employee_dict = {}
     main()
