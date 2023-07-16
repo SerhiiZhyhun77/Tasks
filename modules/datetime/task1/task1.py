@@ -7,6 +7,7 @@
 
 import datetime
 
+# Способ 1
 # Объект для реализаци момента времени
 mytime = datetime.time(13, 35, 20)
 # Проверка результата
@@ -15,10 +16,14 @@ print('Время:', mytime)
 print('Часы:', mytime.hour)
 print('Минуты:', mytime.minute)
 print('Секунды:', mytime.second)
+
+# Способ 2
 # Создвние нового объекта на основе существующего
 newtime = mytime.replace(15, second=45)
 # Проверка результата
 print('Время:', newtime)
+
+# Способ 3
 # Создание нового объекта
 mytime = datetime.time.fromisoformat('12:34:56')
 # Проверка результата
