@@ -22,3 +22,41 @@
 методы-получатели, чтобы получить эти данные и вывести их на экран.
 '''
 
+
+class Employee:
+
+    def __init__(self, name, id):
+        self.__name = name
+        self.__id = id
+
+    def set_name(self, name):
+        self.__name = name
+
+    def set_id(self, id):
+        self.__id = id
+
+    def get_name(self):
+        return self.__name
+
+    def get_id(self):
+        return self.__id
+
+
+class ProductionWorker(Employee):
+
+    def __init__(self, name, id, shift_number, hourly_rate):
+        super().__init__(name, id)
+        self.__shift_number = shift_number
+        self.__hourly_rate = hourly_rate
+
+    def set_shift_number(self, shift_number):
+        self.__shift_number = shift_number
+
+    def set_hourly_rate(self, hourly_rate):
+        self.__hourly_rate = hourly_rate
+
+    def get_shift_number(self):
+        return self.__shift_number
+
+    def get_hourly_rate(self):
+        return self.__hourly_rate
