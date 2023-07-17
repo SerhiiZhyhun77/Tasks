@@ -60,3 +60,24 @@ class ProductionWorker(Employee):
 
     def get_hourly_rate(self):
         return self.__hourly_rate
+
+
+def main():
+    # Get data
+    print('Enter data for production worker')
+    name = input('Name: ')
+    id = input('ID: ')
+    shift_number = input('Shift number (1 - day shift or 2 - evening shift): ')
+    hourly_rate = input('Hourly rate: ')
+    # Create instance
+    worker = ProductionWorker(name, id, shift_number, hourly_rate)
+    # Output data
+    print()
+    print('Name:', worker.get_name())
+    print('ID:', worker.get_id())
+    print('Shift number:', worker.get_shift_number())
+    print('Hourly rate:', worker.get_hourly_rate())
+
+
+if __name__ == '__main__':
+    main()
