@@ -3,8 +3,61 @@
 from tkinter import *
 
 
+# Функция для определения характеристики шрифта
+def getFont():
+    # Пустой список
+    res = []
+    # Название шрифта
+    name = lst.get(lst.curselection())
+    # Размер шрифта
+    size = scl.get()
+    # Добавление элементов в список
+    res.append(name)
+    res.append(size)
+    # Если установлена опция применения жирного стиля
+    if bold.get() != '':
+        res.append(bold.get())
+    # Если установлена опция применения курсивного стиля
+    if italic.get() != '':
+        res.append(italic.get())
+    # Результат функции
+    return res
+
+
+# Функция для применения параметров шрифтов
+def setAll(*args):
+    # Вычисление шрифта
+    fnt = getFont()
+    # Применение шрифта к тексту в окне
+    lbl.configure(font=fnt)
+    # Определение цвета для текста в окне
+    lbl.configure(fg=color.get())
+    # Определение шаблонного текста для отображения в окне
+    txt = '\nШрифт '
+    # Название шрифта
+    txt += fnt[0]
+    # Размер шрифта
+    txt += ' размера ' + str(fnt[1]) + '\n'
+    # Если применяется жирный стиль
+    if 'bold' in fnt:
+        txt += ' жирный'
+    # Если применяется курсивный стиль
+    if 'italic' in fnt:
+        txt += ' курсивный'
+    # Цвет шрифта
+    if color.get() == 'red':
+        txt += ' красного'
+    elif color.get() == 'blue':
+        txt += ' синего'
+    else:
+        txt += ' черного'
+    txt += ' цвета\n'
+    # Отображение текста в окне
+    text.set(txt)
+
+
 # Списки с характеристиками шрифтов
-fnt_1 = ['Arial', 12, 'Italic']
+fnt_1 = ['Arial', 12, 'italic']
 fnt_2 = ['Times New Roman', 13, 'bold', 'italic']
 # Список с названиями шрифтов для статического списка
 fonts = ['Times New Roman', 'Arial', 'Courier New']
@@ -96,8 +149,33 @@ btn.configure(command=wnd.destroy)
 # Размещение меток и слайдера на панелях
 lbl_text.pack(side='top', fill='x', padx=5, pady=5)
 lbl.pack(side='top', fill='both', padx=5, pady=5)
-lbl_color.pack(side='bottom')
-
-
-
+lbl_color.pack(side='top', fill='x', padx=5, pady=5)
+scl.pack(side='bottom', fill='x', padx=5, pady=5)
+lbl_size.pack(side='bottom', fill='x', padx=5, pady=[25, 5])
+lbl_font.pack(side='top', fill='x', padx=5, pady=5)
+lbl_style.pack(side='top', fill='x', padx=5, pady=5)
+# Размещение переключателей
+rb_1.pack(side='left', fill='x', padx=5, pady=5)
+rb_2.pack(side='left', fill='x', padx=5, pady=5)
+rb_3.pack(side='left', fill='x', padx=5, pady=5)
+# Размещение опций
+chb_1.pack(side='left', fill='x', padx=5, pady=5)
+chb_2.pack(side='left', fill='x', padx=5, pady=5)
+# Размещение статического списка
+lst.pack(side='top', fill='x', padx=5, pady=5)
+# Размешение кнопки
+btn.pack(side='bottom', fill='x', padx=50, pady=10)
+# Размещение панелей
+frm_text.place(x=5, y=5, width=W - 10, height=Hf)
+frm_check.pack(side='bottom', fill='both', padx=5, pady=5)
+frm_list.place(x=5, y=Hf + 10, height=Hl, width=Wl)
+frm_scale.place(x=Wl + 10, y=Hf + 10, width=Ws, height=Hs)
+frm_btn.place(x=Wl + 10, y=Hf + 15, width=Ws, height=Hb)
+# Применение параметров шрифта к шаблонному тексту
+setAll()
+# Режим отстлеживания значения переменных
+color.trace('w', setAll)
+bold.trace('w', setAll)
+italic.trace('w', setAll)
+# Отображение окна
 wnd.mainloop()
