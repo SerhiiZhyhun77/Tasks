@@ -159,4 +159,91 @@ class MyApp:
         self.popup.add_command(label='Выход', command=self.clExit)
         # Определение обработчика события для контекстного меню
         self.wnd.bind('<Button-3>', lambda evt: self.popup.tk_popup(
-            evt.x_root, evt,y_root))
+            evt.x_root, evt.y_root))
+
+    # Метод для формирования команд меню, связанных с выбором шрифта
+    def setMenuFont(self, menu):
+        for f in self.fonts:
+            menu.add_radiobutton(label=f, value=f, variable=self.name)
+        self.name.set(self.fonts[0])
+
+    # Метод для формирования команд меню, связанных с выбором стиля
+    def setMenuStyle(self, menu):
+        for k in range(len(self.style)):
+            menu.add_checkbutton(label=self.style[k][1], onvalue=True,
+                                 offvalue=False, variable=self.bi[k])
+        self.bi[0].set(True)
+        self.bi[1].set(False)
+
+    # Метод для формирования команд меню связанных с выбором цвета
+    def setMenuColor(self, menu):
+        for r in self.colors.keys():
+            menu.add_radiobutton(label=self.colors[r], value=r,
+                                 variable=self.color)
+        self.color.set('blue')
+
+    # Метод для определения параметров шрифта и вычисления шаблонного текста
+    def apply(self, *args):
+        # Цвет для шрифта
+        clr = self.color.get()
+        # Название шрифта
+        nm = self.name.get()
+        # Размер шрифта
+        sz = self.size.get()
+        # Применение цвета к метке
+        self.lblText.configure(fg=clr)
+        # Списокс параметрами шрифта
+        fnt = [nm, sz]
+        # Формирование шаблонного текста и определение параметров шрифта
+        txt = self.colors[clr] + ' шрифт ' + nm + '\n'
+        for k in range(len(self.style)):
+            if self.bi[k].get():
+                fnt.append((self.style[k][0]))
+                txt += self.style[k][1].lower() + ' '
+        txt += 'размера ' + str(sz)
+        # Применение шрифта к метке
+        self.lblText.configure(font=fnt)
+        # Задаем текст для метки
+        self.text.set(txt)
+
+    # Метод для создания переменных, используемых для обработки событий
+    def setVars(self):
+        self.text = StringVar()
+        self.name = StringVar()
+        self.bi = [BooleanVar(), BooleanVar()]
+        self.size = IntVar()
+        self.color = StringVar()
+
+    # Метод для перехода в режим отслеживания значений переменных
+    def traceVars(self):
+        mt = self.apply
+        self.name.trace('w', mt)
+        self.color.trace('w', mt)
+        for k in range(len(self.bi)):
+            self.bi[k].trace('w', mt)
+        self.size.trace('w', mt)
+
+    # Метод для обработки нажатия кнопки для завершения работы
+    def clExit(self):
+        self.wnd.destroy()
+
+    # Метод для обработки нажатия кнопки применения/отмены жирного стиля
+    def clBold(self):
+        self.bi[0].set(not self.bi[0].get())
+
+    # Метод для обработки нажатия кнопки применения/отмены кусивного стиля
+    def clItalic(self):
+        self.bi[1].set(not self.bi[1].get())
+
+    # Метод для обработки нажатия кнопки отмены жирного и курсивного стиля
+    def clNormal(self):
+        self.bi[0].set(False)
+        self.bi[1].set(False)
+
+    # Метод для отображения окна с сообщением
+    def showDialog(self):
+        showinfo('О программе', 'Очень простая программа')
+
+
+# Отображение окна на экране
+MyApp()
