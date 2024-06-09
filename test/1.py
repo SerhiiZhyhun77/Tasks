@@ -1,1 +1,4 @@
-print('Я готовий до праці, володар!')
+Text = "Hello! Who are you?"
+print(Text)
+Name = input()
+print(Name)
