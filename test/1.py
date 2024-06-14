@@ -1,30 +1,35 @@
 import random
 
+attempt = 0
+_input = 0
 
-def initGame():
+
+def init_game():
+    global attempt, _input
     secret = "Я задумав число від 1 до 1000"
     print(secret)
-    attempt = 0
-    input = 0
 
-def playGame():
+
+def play_game():
+    global attempt, _input
     case = random.randint(1, 1000)
-    while input != case:
+    while _input != case:
         print("Вгадай число: ", end="")
-        input = int(input())
+        _input = int(input())
         attempt += 1
-        if input < case:
+        if _input < case:
             print("Занадто маленьке!")
-        if input > case:
+        if _input > case:
             print("Занадто велике!")
-        if input == case:
+        if _input == case:
             print("Правильно!")
 
-def endGame():
+
+def end_game():
     print("Ти спробував " + str(attempt) + " разів.")
 
 
 # main program
-initGame()
-playGame()
-endGame()
+init_game()
+play_game()
+end_game()
