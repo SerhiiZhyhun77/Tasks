@@ -1,35 +1,20 @@
-import random
-
-attempt = 0
-_input = 0
+import tkinter
+window = tkinter.Tk()
 
 
-def init_game():
-    global attempt, _input
-    secret = "Я задумав число від 1 до 1000"
-    print(secret)
+def button_click1():
+    display.configure(text="Це радує!")
 
 
-def play_game():
-    global attempt, _input
-    case = random.randint(1, 1000)
-    while _input != case:
-        print("Вгадай число: ", end="")
-        _input = int(input())
-        attempt += 1
-        if _input < case:
-            print("Занадто маленьке!")
-        if _input > case:
-            print("Занадто велике!")
-        if _input == case:
-            print("Правильно!")
+def button_click2():
+    display.configure(text="Це засмучує!")
 
 
-def end_game():
-    print("Ти спробував " + str(attempt) + " разів.")
+display = tkinter.Label(window, text="Привіт, як справи?")
+display.pack()
+button1 = tkinter.Button(window, text="Добре", command=button_click1)
+button2 = tkinter.Button(window, text="Не дуже", command=button_click2)
+button1.pack(side="left")
+button2.pack(side="right")
 
-
-# main program
-init_game()
-play_game()
-end_game()
+window.mainloop()
