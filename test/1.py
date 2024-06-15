@@ -4,22 +4,22 @@ answer = ["Супер", "Хорошо", "Так себе", "Плохо", "Ужа
 diagnose = ["Это здорово!", "Это радует!", "Все возможно.", "Это огорчает!",
             "Это плохо!", "Раз ты так думаешь..."]
 
-
-def listbox_select(event):
-    select = box.curselection()
-    nr = select[0]
-    display.config(text=diagnose[nr])
+def button_click():
+    display.config(text=diagnose[Number.get()])
 
 window = Tk()
 window.title("Привет!")
-window.config(width=260, height=230)
+window.minsize(width=260, height=260)
 display = Label(window, text="Как это сделать?")
-display.place(x=20, y=10, width=160, height=30)
+display.pack()
 
-box = Listbox(window)
-for nr in range(0,6):
-    box.insert(nr, answer[nr])
-box.bind("<<ListboxSelect>>", listbox_select)
-box.place(x=30, y=50, width=200, height=150)
+Number = IntVar()
+Number.set(-1)
+
+option = []
+for nr in range(0, 6):
+    option.append(Radiobutton(window, variable=Number, value=nr, text=answer[nr]))
+    option[nr].config(command=button_click)
+    option[nr].pack(anchor="w")
 
 window.mainloop()
