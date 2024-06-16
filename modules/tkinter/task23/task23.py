@@ -1,8 +1,21 @@
+# Psychologist program
 from tkinter import *
 
+# text constant
 state = ["You said me:", "I tell you:", "Diagnosis:"]
+diagnose = ["This is awesome!", "This makes me happy!", "Everything is possible.",
+            "This is upsetting!", "This is bad!", "If you think so..."]
 
+# function for events
+def button1_click():
+    pass
+def button2_click():
+    pass
+
+# main program
 window = Tk()
+window.title("Psychologist")
+window.minsize(width=500, height=330)
 
 border = []
 for pos in range(0, 3):
