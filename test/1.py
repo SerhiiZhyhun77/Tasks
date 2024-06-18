@@ -1,14 +1,30 @@
-from turtle import *
-import random
+from tkinter import *
 
-width, height = 600, 400
-window = Screen()
-window.title("Черепашка")
-window.setup(width=width, height=height)
+width = 500
+height = 330
+mode = ["Появление", "Движение", "Сокрытие"]
 
-shape("turtle")
-for step in range(20):
-    forward(random.randint(5, 30))
-    left(random.randint(-90, 90))
+def show_image():
+    pass
 
-print("OK")
+def move_image():
+    pass
+
+def hide_image():
+    pass
+
+window = Tk()
+window.title("Анимация")
+window.config(width=width, height=height)
+graphic = Canvas(window, width=width, height=height)
+graphic.pack()
+
+knob = []
+for nr in range(3):
+    knob.append(Button(window, text=mode[nr]))
+    knob.place(x=30 + nr *150, y=height -50, width=140, height=30)
+knob[0].config(command=show_image)
+knob[1].config(command=move_image)
+knob[2].config(command=hide_image)
+
+window.mainloop()
