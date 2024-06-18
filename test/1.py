@@ -3,23 +3,26 @@ from tkinter import *
 width = 500
 height = 330
 mode = ["Появление", "Движение", "Сокрытие"]
-x, y, z = 20, 50, 200
+x, y = 120, 160
 
 def show_image():
-    global circle
-    circle=graphic.create_oval(x, y, x + z, y + z, fill="red")
+    global figure
+    global picture
+
+    picture = PhotoImage(file="peppa.gif")
+    figure = graphic.create_image(x, y, image=picture)
 
 def move_image():
-    global circle
+    global figure
     for pos in range(20, width - 220, 2):
-        graphic.move(circle, 2, 0)
+        graphic.move(figure, 2, 0)
         graphic.update()
-        graphic.after(20)
+        graphic.after(10)
 
 
 def hide_image():
-    global circle
-    graphic.delete(circle)
+    global figure
+    graphic.delete(figure)
 
 window = Tk()
 window.title("Анимация")
