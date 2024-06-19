@@ -15,12 +15,13 @@ class Player(pg.sprite.Sprite):
 # setting initial values
 green = (0, 255, 0)
 direction = 0
+x_max, y_max = 600, 400
 
 # launching Pygame, creating a game field and character
 pg.init()
 pg.key.set_repeat(20, 20)
-window = pg.display.set_mode((600, 400))
-figure = Player(250, 150)
+window = pg.display.set_mode((x_max, y_max))
+figure = Player(x_max / 2 - 50, y_max / 2 - 50)
 
 # event loop
 running = True
@@ -32,16 +33,20 @@ while running:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_LEFT:
                 direction = 1
-                figure.x -= 5
+                if figure.x > 0:
+                    figure.x -= 5
             if event.key == pg.K_RIGHT:
                 direction = 3
-                figure.x += 5
+                if figure.x < x_max - 100:
+                    figure.x += 5
             if event.key == pg.K_UP:
                 direction = 0
-                figure.y -= 5
+                if figure.y > 0:
+                    figure.y -= 5
             if event.key == pg.K_DOWN:
                 direction = 2
-                figure.y += 5
+                if figure.y < y_max - 100:
+                    figure.y += 5
             figure.rotate(direction * 90)
     # update sprite position
     window.fill(green)
