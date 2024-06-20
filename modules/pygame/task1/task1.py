@@ -55,54 +55,52 @@ while running:
         # setting the mouse
         if event.type == pg.MOUSEBUTTONDOWN:
             (x_pos, y_pos) = pg.mouse.get_pos()
-            x_dif = x_pos - figure.x - 50
-            y_dif = y_pos - figure.y - 50
-            distance = sqrt(x_dif * x_dif + y_dif * y_dif)
-            degree = atan2(-y_dif, x_dif)
-            degree = degrees(degree) - 90
-            x_dif /= distance
-            y_dif /= distance
-            figure.rotate(degree)
+            # x_dif = x_pos - figure.x - 50
+            # y_dif = y_pos - figure.y - 50
+            # distance = sqrt(x_dif * x_dif + y_dif * y_dif)
+            # degree = atan2(-y_dif, x_dif)
+            # degree = degrees(degree) - 90
+            # x_dif /= distance
+            # y_dif /= distance
+            # figure.rotate(degree)
 
-        # restriction of movement
-        if figure.x < 0 or figure.x > x_max - 110:
-            x_step = -x_step
-        if figure.y < 0 or figure.y > y_max - 110:
-            y_step = -y_step
-
-        # determining the direction of movement
-        degree = atan2(-y_step, x_step)
-        degree = degrees(degree) - 90
-        figure.rotate(degree)
-
-        # motion delay
-        figure.step(x_step, y_step)
-        pg.time.delay(10)
+    # restriction of movement
+    if figure.x < 0 or figure.x > x_max - 110:
+        x_step = -x_step
+    if figure.y < 0 or figure.y > y_max - 110:
+        y_step = -y_step
+    # determining the direction of movement
+    degree = atan2(-y_step, x_step)
+    degree = degrees(degree) - 90
+    figure.rotate(degree)
+    # motion delay
+    figure.step(x_step, y_step)
+    pg.time.delay(10)
 
         # setting the keys
-        if event.type == pg.KEYDOWN:
-            if event.key == pg.K_LEFT:
-                direction = 1
-                if figure.x > 0:
-                    figure.x -= 5
-            if event.key == pg.K_RIGHT:
-                direction = 3
-                if figure.x < x_max - 100:
-                    figure.x += 5
-            if event.key == pg.K_UP:
-                direction = 0
-                if figure.y > 0:
-                    figure.y -= 5
-            if event.key == pg.K_DOWN:
-                direction = 2
-                if figure.y < y_max - 100:
-                    figure.y += 5
-            figure.rotate(direction * 90)
+        # if event.type == pg.KEYDOWN:
+        #     if event.key == pg.K_LEFT:
+        #         direction = 1
+        #         if figure.x > 0:
+        #             figure.x -= 5
+        #     if event.key == pg.K_RIGHT:
+        #         direction = 3
+        #         if figure.x < x_max - 100:
+        #             figure.x += 5
+        #     if event.key == pg.K_UP:
+        #         direction = 0
+        #         if figure.y > 0:
+        #             figure.y -= 5
+        #     if event.key == pg.K_DOWN:
+        #         direction = 2
+        #         if figure.y < y_max - 100:
+        #             figure.y += 5
+        #     figure.rotate(direction * 90)
 
     # motion delay
-    if distance > 5:
-        distance = figure.move(distance, x_dif, y_dif)
-        pg.time.delay(10)
+    # if distance > 5:
+    #     distance = figure.move(distance, x_dif, y_dif)
+    #     pg.time.delay(10)
     # update sprite position
     window.fill(green)
     window.blit(figure.bild, (figure.x, figure.y))
