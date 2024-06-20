@@ -1,5 +1,7 @@
 import pygame as pg
 from math import *
+import random
+
 
 class Player(pg.sprite.Sprite):
     def __init__(self, x_pos=0, y_pos=0):
@@ -17,6 +19,11 @@ class Player(pg.sprite.Sprite):
         distance -= 1
         return distance
 
+    def step(self, xx, yy):
+        self.x += xx
+        self.y += yy
+
+
 
 # setting initial values
 green = (0, 255, 0)
@@ -30,6 +37,13 @@ pg.init()
 pg.key.set_repeat(20, 20)
 window = pg.display.set_mode((x_max, y_max))
 figure = Player(x_max / 2 - 50, y_max / 2 - 50)
+
+# random direction
+x_step, y_step = random.randint(0, 2), random.randint(0, 2)
+if x_step == 0:
+    x_step = -1
+if y_step == 0:
+    y_step = -1
 
 # event loop
 running = True
@@ -50,6 +64,21 @@ while running:
             y_dif /= distance
             figure.rotate(degree)
 
+        # restriction of movement
+        if figure.x < 0 or figure.x > x_max - 110:
+            x_step = -x_step
+        if figure.y < 0 or figure.y > y_max - 110:
+            y_step = -y_step
+
+        # determining the direction of movement
+        degree = atan2(-y_step, x_step)
+        degree = degrees(degree) - 90
+        figure.rotate(degree)
+
+        # motion delay
+        figure.step(x_step, y_step)
+        pg.time.delay(10)
+
         # setting the keys
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_LEFT:
@@ -69,6 +98,8 @@ while running:
                 if figure.y < y_max - 100:
                     figure.y += 5
             figure.rotate(direction * 90)
+
+    # motion delay
     if distance > 5:
         distance = figure.move(distance, x_dif, y_dif)
         pg.time.delay(10)
