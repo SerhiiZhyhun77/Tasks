@@ -17,3 +17,10 @@ class Player(pg.sprite.Sprite):
     def set_state(self, nr):
         self.status = nr
         self.bild = self.image[nr]
+
+    def dodge(self, y_pos, y_middle):
+        if (y_pos < y_middle and self.status == 1) \
+            or (y_pos > y_middle and self.status == 2):
+            return True
+        else:
+            return False
