@@ -63,5 +63,4 @@ while running:
     window.blit(ball.bild, (ball.x, ball.y))
     pg.display.update()
 
-
 pg.quit()
