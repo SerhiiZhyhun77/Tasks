@@ -19,8 +19,8 @@ class Player(pg.sprite.Sprite):
         self.bild = self.image[nr]
 
     def dodge(self, y_pos, y_middle):
-        if (y_pos < y_middle and self.status == 1) \
-            or (y_pos > y_middle and self.status == 2):
+        if ((y_pos < y_middle and self.status == 1)
+                or (y_pos > y_middle and self.status == 2)):
             return True
         else:
             return False
