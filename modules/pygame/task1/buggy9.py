@@ -55,24 +55,28 @@ while running:
                     figure[nr].destroy()
 
     # restriction of movement
-    if figure.x < 0 or figure.x > x_max - 110:
-        x_step = -x_step
-    if figure.y < 0 or figure.y > y_max - 110:
-        y_step = -y_step
+    for nr in range(0, bug_max):
+        if figure[nr].x < 0 or figure[nr].x > x_max - 110:
+            x_step[nr] = -x_step[nr]
+        if figure[nr].y < 0 or figure[nr].y > y_max - 110:
+            y_step[nr] = -y_step[nr]
 
     # determining the direction of movement
-    degree = atan2(-y_step, x_step)
-    degree = degrees(degree) - 90
-    figure.rotate(degree)
+    for nr in range(0, bug_max):
+        degree = atan2(-y_step[nr], x_step[nr])
+        degree = degrees(degree) - 90
+        figure[nr].rotate(degree)
 
     # motion delay
-    if not figure.is_killed:
-        figure.step(x_step, y_step)
-        pg.time.delay(5)
+    for nr in range(0, bug_max):
+        if not figure[nr].is_killed:
+            figure[nr].step(x_step[nr] * 2, y_step[nr] * 2)
+            pg.time.delay(5)
 
     # sprite position in window (new)
     window.fill(green)
-    window.blit(figure.bild, (figure.x, figure.y))
+    for nr in range(0, bug_max):
+        window.blit(figure[nr].bild, (figure[nr].x, figure[nr].y))
     pg.display.update()
 
 pg.quit()
