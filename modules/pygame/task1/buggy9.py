@@ -1,10 +1,12 @@
-import pygame as pg
 from math import *
 import random
 from bplayer import *
+from game import *
 
 # setting initial values
+red = (255, 0, 0)
 green = (0, 255, 0)
+blue = (0, 0, 255)
 x_max, y_max = 600, 400
 direction = 0
 distance = 0
@@ -16,6 +18,7 @@ pg.init()
 pg.key.set_repeat(20, 20)
 pg.display.set_caption("Bug Game")
 window = pg.display.set_mode((x_max, y_max))
+arcade = Game(green)
 
 figure = []
 for nr in range(0, bug_max):
@@ -36,10 +39,21 @@ for nr in range(0, bug_max):
     if y_step[nr] == 0:
         y_step[nr] = -1
 
+# start timer
+arcade.get_time(True)
 
 # event loop
 running = True
 while running:
+    # check and output time
+    time = arcade.get_time(False)
+    arcade.show_all(0, blue)
+
+    # when time is gone
+    if time > bug_max * 1500:
+        arcade.show_message('Game Over', red)
+        running = False
+
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
@@ -48,10 +62,11 @@ while running:
         if event.type == pg.MOUSEBUTTONDOWN:
             (x_pos, y_pos) = pg.mouse.get_pos()
 
-
-            for nr in range (0, bug_max):
-                if x_pos > figure[nr].x and x_pos < figure[nr].x + 100 \
-                    and y_pos > figure[nr].y and y_pos < figure[nr].y + 100:
+            for nr in range(0, bug_max):
+                if (figure[nr].x < x_pos < figure[nr].x + 100
+                        and figure[nr].y < y_pos < figure[nr].y + 100):
+                    if not figure[nr].is_killed:
+                        arcade.set_score(50, blue)
                     figure[nr].destroy()
 
     # restriction of movement
@@ -75,8 +90,10 @@ while running:
 
     # sprite position in window (new)
     window.fill(green)
+    window.blit(arcade.text_, (x_max / 3, 10))
     for nr in range(0, bug_max):
         window.blit(figure[nr].bild, (figure[nr].x, figure[nr].y))
     pg.display.update()
 
+pg.time.delay(1500)
 pg.quit()
