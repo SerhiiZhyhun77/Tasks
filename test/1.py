@@ -1,4 +1,5 @@
-adjective = input("Введите прилагательное: ")
-noun = input("Введите существительное: ")
-verb = input("Введите глагол в прошедшем времени: ")
-print("Этот ", adjective, noun, verb, "на ленивую рыжую собаку.")
+import turtle
+t = turtle.Pen()
+for x in range(100):
+    t.forward(x)
+    t.left(90)
