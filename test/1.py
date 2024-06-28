@@ -19,3 +19,5 @@ for x in range(100):
                  # каждый раз шрифт
     t.write(your_name, font=("Arial", int((x + 4) / 4), "bold"))
     t.left(92)  # Повернуть налево, как в других спиралях
+
+t.exitonclick()
