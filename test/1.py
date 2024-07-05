@@ -1,18 +1,23 @@
 import turtle
 t = turtle.Pen()
+t.penup()
 turtle.bgcolor('black')
+sides = int(turtle.numinput('Количество сторон', 'Сколько сторон у вашей спирали спиралей? (2-6)', 4, 2, 6))
 colors = ['red', 'yellow', 'blue', 'green', 'orange', 'purple','white',
           'brown', 'gray', 'pink']
-family = []
-name = turtle.textinput('Моя семья', 'Введите имя или нажмите [Enter], чтобы выйти:')
-while name != '':
-    family.append(name)
-    name = turtle.textinput('Моя семья', 'Введите имя или нажмите [Enter], чтобы выйти:')
+for m in range(100):
+    t.forward(m * 4)
+    position = t.position()
+    heading = t.heading()
+    print(position, heading)
 
-for x in range(100):
-    t.pencolor(colors[x % len(family)])
-    t.penup()
-    t.forward(x * 4)
-    t.pendown()
-    t.write(family[x % len(family)], font=('Arial', int((x + 4) / 4), 'bold'))
-    t.left(360 / len(family) + 2)
+    for n in range(int(m / 2)):
+        t.pendown()
+        t.pencolor(colors[n % sides])
+        t.forward(2 * n)
+        t.right(360 / sides - 2)
+        t.penup()
+    t.setx(position[0])
+    t.sety(position[1])
+    t.setheading(heading)
+    t.left(360 / sides + 2)
