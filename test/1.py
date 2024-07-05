@@ -1,5 +1,7 @@
-import turtle
-t = turtle.Pen()
-for x in range(6):
-    t.circle(100)
-    t.left(60)
+name = input("Как тебя зовут? ")
+while name != "":
+    for x in range(100):
+        print(name, end=' ')
+    print()
+    name = input("Введите еще имя или нажмите [Enter], чтобы выйти: ")
+print('Спасибо за игру!')
