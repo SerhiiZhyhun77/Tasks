@@ -1,10 +1,18 @@
 import random
-the_number = random.randint(1, 10)
-guess = int(input("Угадайте число от 1 до 10: "))
-while guess != the_number:
-    if guess > the_number:
-        print(guess, "Слишком велико. Попробуйте снова.")
-    if guess < the_number:
-        print(guess, "Слишком мало. Попробуйте снова.")
-    guess = int(input("Еще одна попытка: "))
-print(guess, "Правильное число! Вы победили!")
+import turtle
+t = turtle.Pen()
+turtle.bgcolor("black")
+colors = ['red', 'yellow', 'blue', 'orange', 'purple', 'white', 'gray']
+for n in range(50):
+    t.pencolor(random.choice(colors))
+    size = random.randint(10, 40)
+    x = random.randrange(-turtle.window_width() // 2, turtle.window_width() // 2)
+    y = random.randrange(-turtle.window_height() // 2, turtle.window_height() // 2)
+
+    t.penup()
+    t.setpos(x, y)
+    t.pendown()
+    for m in range(size):
+        t.forward(m * 2)
+        t.left(91)
+turtle.exitonclick()
