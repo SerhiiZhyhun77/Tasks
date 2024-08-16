@@ -1,17 +1,14 @@
 import pygame
-
 pygame.init()
 screen = pygame.display.set_mode([800, 600])
-
 keep_going = True
-GREEN = (0, 255, 0)
-radius = 50
+pic = pygame.image.load("CrazySmile.bmp")
 
 while keep_going:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             keep_going = False
-    pygame.draw.circle(screen, GREEN, (100, 100), radius)
+    screen.blit(pic, (100, 100))
     pygame.display.update()
 
 pygame.quit()
