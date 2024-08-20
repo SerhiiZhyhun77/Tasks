@@ -1,3 +1,5 @@
+# Just simple graphic editor. Click and draw.
+
 import pygame
 
 pygame.init()
