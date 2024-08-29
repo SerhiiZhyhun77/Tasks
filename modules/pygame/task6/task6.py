@@ -45,7 +45,12 @@ while keep_going:
         if event.type == pygame.QUIT:
             keep_going = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mousedown = True
+            if pygame.mouse.get_pressed()[0]:  # Ліва кнопка миші
+                mousedown = True
+            elif pygame.mouse.get_pressed()[2]:  # Права кнопка миші
+                pos = pygame.mouse.get_pos()
+                clicked_smileys = [s for s in sprite_list if s.rect.collidepoint(pos)]
+                sprite_list.remove(clicked_smileys)
         if event.type == pygame.MOUSEBUTTONUP:
             mousedown = False
     screen.fill(BLACK)
