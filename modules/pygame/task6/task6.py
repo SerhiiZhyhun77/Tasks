@@ -9,10 +9,15 @@ pic = pygame.image.load('CrazySmile.bmp')
 colorkey = pic.get_at((0, 0))
 pic.set_colorkey(colorkey)
 sprite_list = pygame.sprite.Group()
-
+pygame.mixer.init()
+pop = pygame.mixer.Sound('pop.wav')
+font = pygame.font.SysFont('Arial', 24)
+WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 mousedown = False
 keep_going = True
+count_smileys = 0
+count_popped = 0
 
 class Smiley(pygame.sprite.Sprite):
     pos = (0, 0)
@@ -44,6 +49,7 @@ while keep_going:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             keep_going = False
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pressed()[0]:  # Ліва кнопка миші
                 mousedown = True
@@ -51,12 +57,27 @@ while keep_going:
                 pos = pygame.mouse.get_pos()
                 clicked_smileys = [s for s in sprite_list if s.rect.collidepoint(pos)]
                 sprite_list.remove(clicked_smileys)
+                if len(clicked_smileys) > 0:
+                    pop.play()
+                    count_popped += len(clicked_smileys)
+
         if event.type == pygame.MOUSEBUTTONUP:
             mousedown = False
     screen.fill(BLACK)
     sprite_list.update()
     sprite_list.draw(screen)
     clock.tick(60)
+    draw_string = 'Шариков создано: ' + str(count_smileys)
+    draw_string += ' - Шариков лопнуто: ' + str(count_popped)
+    if count_smileys > 0:
+        draw_string += ' - Процент: '
+        draw_string += str(round(count_popped / count_smileys * 100, 1))
+        draw_string += '%'
+    text = font.render(draw_string, True, WHITE)
+    text_rect = text.get_rect()
+    text_rect.centerx = screen.get_rect().centerx
+    text_rect.y = 10
+    screen.blit(text, text_rect)
     pygame.display.update()
 
     if mousedown:
@@ -64,5 +85,6 @@ while keep_going:
         speedy = random.randint(-5, 5)
         newSmiley = Smiley(pygame.mouse.get_pos(), speedx, speedy)
         sprite_list.add(newSmiley)
+        count_smileys += 1
 
 pygame.quit()
